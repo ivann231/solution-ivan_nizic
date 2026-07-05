@@ -104,3 +104,10 @@ npm run lint
 ## 🔗 Live Deployment
 
 https://gorgeous-frangollo-82a0a4.netlify.app/
+
+
+## AI Usage
+
+- ChatGPT was used to generate a plan of implementation.
+- GitHub Copilot was used for code generaton, debugging and fixing TypeScript errors, while programming.
+- Google Gemini was used to add dark mode to the application.
