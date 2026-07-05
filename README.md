@@ -1,32 +1,106 @@
-# React + TypeScript + Vite
+## 🛠️ Technology Stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+| Technology | Purpose | Description |
+| :--- | :--- | :--- |
+| **React 19** | Library | Core component-based UI rendering. |
+| **Vite** | Build Tool | Fast HMR dev server and optimized Rollup production builds. |
+| **TypeScript** | Language | Type safety, static checking, and autocompletion. |
+| **TanStack React Query v5** | State & Cache | Async query management, caching, state stale times, and retries. |
+| **React Router v7** | Routing | Declarative routing, layout outlets, and search param bindings. |
+| **Styled Components** | Styling | CSS-in-JS with full support for theme tokens and variables. |
+| **Oxlint** | Linter | Ultra-fast JS/TS linter for maintaining code quality. |
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📂 Project Structure
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```text
+frontend/
+├── public/                 # Static assets
+└── src/
+    ├── api/                # API client configuration and DummyJSON fetch requests
+    │   ├── client.ts       # Axios/Fetch base URL setup
+    │   ├── products.ts     # Products, Categories, Search queries
+    │   └── auth.ts         # Authentication fetch hooks (placeholder)
+    ├── components/         # Reusable UI components
+    │   ├── common/         # Button, Loader, SearchInput, Pagination, States
+    │   └── products/       # ProductCard, ProductDetail, ProductsGrid
+    ├── context/            # React Contexts
+    │   ├── ThemeContext.tsx# Dark/Light mode theme state manager
+    │   └── AuthContext.tsx # User session context (placeholder)
+    ├── hooks/              # Custom React Hooks
+    │   ├── useDebounce.ts  # Delay search inputs to throttle API requests
+    │   ├── useProducts.ts  # TanStack React Query for product collections
+    │   └── useCategories.ts# TanStack React Query for product categories
+    ├── layout/             # Page templates and wrapper layouts
+    │   └── MainLayout.tsx  # Navbar, Footer, and theme toggles surrounding routes
+    ├── pages/              # Routed Page Views
+    │   ├── ProductsPage.tsx# Main catalog view with toolbar & pagination
+    │   ├── ProductDetailsPage.tsx # Detailed view of individual items
+    │   ├── Favourites.tsx  # Saved products (placeholder)
+    │   └── Login.tsx       # Authentication screen (placeholder)
+    ├── router/             # Routing configuration
+    │   └── router.tsx      # Browser router defining app routes
+    ├── styles/             # Global styled-component themes
+    │   ├── theme.ts        # Light and Dark theme object tokens
+    │   ├── ThemeProvider.tsx # Provider connecting context theme state to Styled-Components
+    │   └── GlobalStyle.ts  # Typography, reset styling, scrollbars
+    ├── types/              # TypeScript typings
+    └── main.tsx            # Application entrypoint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 🚀 Getting Started
+
+### 📋 Prerequisites
+
+Ensure you have **Node.js** (v18 or higher recommended) and **npm** installed.
+
+### 📥 Installation
+
+1. Install project dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to `http://localhost:5173`.
+
+### 🏗️ Build & Production
+
+To build the application for production, compile TypeScript and package assets using:
+```bash
+npm run build
+```
+
+You can preview the built files locally with:
+```bash
+npm run preview
+```
+
+### 🧹 Code Linting
+
+Run the ultra-fast Oxlint linter to verify code formatting and standards:
+```bash
+npm run lint
+```
+
+---
+
+## 🗺️ Future Roadmap
+
+- [ ] **Authentication**: Complete the integration of the dummyjson auth tokens within `AuthContext` and create protected routes.
+- [ ] **Favorites/Bookmarks**: Fully implement the Favourites page using local storage or backend persistence.
+- [ ] **Shopping Cart**: Add standard e-commerce features (add to cart, modify quantity, cart summary, and mock checkout).
+- [ ] **React Compiler**: Explore enabling React Compiler rules for further performance optimizations.
+
+---
+
+## 🔗 Live Deployment
+
+https://gorgeous-frangollo-82a0a4.netlify.app/
