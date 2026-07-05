@@ -45,10 +45,19 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [themeName, setThemeName] = useState<ThemeName>('light')
+  const [themeName, setThemeName] = useState<ThemeName>(() => {
+    const saved = localStorage.getItem('theme') as ThemeName
+    if (saved === 'light' || saved === 'dark') return saved
+    
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark'
+    }
+    return 'light'
+  })
   const theme = themes[themeName]
 
   useEffect(() => {
+    localStorage.setItem('theme', themeName)
     const root = document.documentElement
     Object.entries(theme).forEach(([key, value]) => {
       root.style.setProperty(`--${key}`, value)
